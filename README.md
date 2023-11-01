@@ -19,5 +19,5 @@ This project is a program made in Java that allows you to generate random passwo
 - Random password generation: The program can generate secure and random passwords.
 - Save Password: Generated passwords can be saved to a text file for later use.
 
-##Development tools
+## Development tools
 - Programming language: Java
