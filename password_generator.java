@@ -16,7 +16,7 @@ public class password_generator {
     private JTextField number_digit;
     private JTextField password;
     private JRadioButton activate;
-    private JTextField textField1;
+    private JTextField nametxt;
     private JLabel label;
     private JLabel label1;
     private JLabel label2;
@@ -30,9 +30,11 @@ public class password_generator {
     private JSeparator Separator1;
     private JSeparator Separator3;
 
+
     //Variables | Variables
     private static FileWriter writer;
-    int i2 = 0;
+    int index = 0;
+
     public password_generator() {
 
         //Boton para generar la contraseña | Button to generate the password
@@ -41,12 +43,11 @@ public class password_generator {
             //Obtiene la longitud de la contraseña | Get the length of the password
             String length = number_digit.getText();
 
-            //Nombre del archivo | File name
             //Verifica si el guardado de la contraseña en un archivo de texto esta activado | Check if saving the password to a text file is enabled
             if(activate.isSelected()) {
 
                 //Obtiene el nombre del archivo | Get the file name
-                String file_name = textField1.getText();
+                String file_name = nametxt.getText();
 
                 //Valida que el campo no este vacio | Validate that the field is not empty
                 if (Objects.equals(file_name, "")) {
@@ -59,6 +60,7 @@ public class password_generator {
                     return;
                 }
                 else{
+
                     //Crear el archivo | Create the file
                     try {
                         file_name += ".txt";
@@ -69,12 +71,12 @@ public class password_generator {
                     }
                 }
             }
-            //Longitud de la contraseña | Password length
-            //Valida que el campo no este vacio | Validate that the field is not empty
+
+            //Valida que el usuario ingrese un valor | Validate that the user enters a value
             if (Objects.equals(length, "")){
                 JOptionPane.showMessageDialog(null, "Ingrese un valor");
             }
-            //Valida que el campo sea un numero | Validate that the field is a number
+            //Valida que el usuario no ingrese letras | Validate that the user does not enter letters
             else if (!length.matches("[0-9]*")) {
                 JOptionPane.showMessageDialog(null, "Ingrese un numero");
             }
@@ -96,6 +98,7 @@ public class password_generator {
             }
         });
     }
+
     //Funcion para generar la contraseña | Function to generate the password
     public String generate_password(int length) {
 
@@ -104,16 +107,19 @@ public class password_generator {
         String upper_case = lower_case.toUpperCase();
         String numbers = "0123456789";
         String special_characters = "!#$%&@";
+
         String password_generate = "";
-        int i = 0;
+        int num_rand = 0;
+
+        //Genera un numero aleatorio | Generate a random number
         Random rand = new Random();
 
         //Genera la contraseña | Generate the password
-        for (int j = 0; j < length; j++) {
+        for (int i = 0; i < length; i++) {
 
-            i = rand.nextInt(1, 5);
+            num_rand = rand.nextInt(1, 5);
 
-            switch (i) {
+            switch (num_rand) {
                 case 1:
                     password_generate += lower_case.charAt(rand.nextInt(0, 25));
                     break;
@@ -129,27 +135,43 @@ public class password_generator {
             }
         }
 
-        i2+=1;
+        index+=1;
 
         //Guarda la contraseña en un archivo de texto | Save the password to a text file
         if(activate.isSelected()){
             try {
-                writer.write(i2 + ".- " +  password_generate + "\n");
+                writer.write(index + ".- " +  password_generate + "\n");
                 writer.close();
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Error al escribir en el archivo");
             }
         }
+
         //Retorna la contraseña | Return the password
         return password_generate;
     }
-    //Ejecuta el programa | Run the program
+
+    //Funcion principal | Main function
     public static void main(String[] args) {
         //Crea la ventana | Create the window
         JFrame frame = new JFrame("Password Generator");
+        //Agrega el contenido a la ventana | Add content to the window
         frame.setContentPane(new password_generator().form);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    //Estilos de los componentes | Component styles
+    private void createUIComponents() {
+        number_digit = new JTextField();
+        number_digit.setBorder(BorderFactory.createLineBorder(null, 1));
+
+        nametxt = new JTextField();
+        nametxt.setBorder(BorderFactory.createLineBorder(null, 1));
+
+        password = new JTextField();
+        password.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
+
     }
 }
