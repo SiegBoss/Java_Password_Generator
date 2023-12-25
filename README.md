@@ -12,8 +12,8 @@ Este proyecto es un generador de contraseñas aleatorias implementado en Java co
 
 El proyecto consta de los siguientes archivos:
 
-- `password_generator.java` : Este es el archivo principal que contiene todo el código del generador de contraseñas.
-- `password_generator.form`: Este archivo contiene la descripción de la interfaz de usuario en un formato que puede ser utilizado por el IDE para construir la interfaz gráfica.
+- `Password_Generator.java` : Este es el archivo principal que contiene todo el código del generador de contraseñas.
+- `Password_Generator.form`: Este archivo contiene la descripción de la interfaz de usuario en un formato que puede ser utilizado por el IDE para construir la interfaz gráfica.
 
 ## Requisitos
 
@@ -39,8 +39,8 @@ This project is a random password generator implemented in Java with a user-frie
 
 The project consists of the following files:
 
-- `password_generator.java` : This is the main file that contains all the code for the password generator.
-- `password_generator.form`: This file contains the description of the user interface in a format that can be used by the IDE to build the graphical interface.
+- `Password_Generator.java` : This is the main file that contains all the code for the password generator.
+- `Password_Generator.form`: This file contains the description of the user interface in a format that can be used by the IDE to build the graphical interface.
 
 ## Requirements
 
