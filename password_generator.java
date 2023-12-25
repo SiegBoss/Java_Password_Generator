@@ -1,6 +1,7 @@
 //Generador de contraseñas aleatorias | Random Password Generator
 
 //Librerias | Libraries
+
 import javax.swing.*;
 import java.io.IOException;
 import java.util.Objects;
@@ -44,7 +45,7 @@ public class password_generator {
             String length = number_digit.getText();
 
             //Verifica si el guardado de la contraseña en un archivo de texto esta activado | Check if saving the password to a text file is enabled
-            if(activate.isSelected()) {
+            if (activate.isSelected()) {
 
                 //Obtiene el nombre del archivo | Get the file name
                 String file_name = nametxt.getText();
@@ -58,29 +59,26 @@ public class password_generator {
                 else if (file_name.matches("[^a-zA-Z0-9]*")) {
                     JOptionPane.showMessageDialog(null, "Ingrese un nombre de archivo valido");
                     return;
-                }
-                else{
+                } else {
 
                     //Crear el archivo | Create the file
                     try {
                         file_name += ".txt";
                         writer = new FileWriter(file_name, true);
-                    }
-                    catch (IOException ex) {
+                    } catch (IOException ex) {
                         JOptionPane.showMessageDialog(null, "Error al crear el archivo");
                     }
                 }
             }
 
             //Valida que el usuario ingrese un valor | Validate that the user enters a value
-            if (Objects.equals(length, "")){
+            if (Objects.equals(length, "")) {
                 JOptionPane.showMessageDialog(null, "Ingrese un valor");
             }
             //Valida que el usuario no ingrese letras | Validate that the user does not enter letters
             else if (!length.matches("[0-9]*")) {
                 JOptionPane.showMessageDialog(null, "Ingrese un numero");
-            }
-            else {
+            } else {
                 //Convierte el valor a entero | Convert the value to integer
                 int length_int = Integer.parseInt(length);
 
@@ -89,8 +87,7 @@ public class password_generator {
                     JOptionPane.showMessageDialog(null, "Para Generar una Contraseña Segura, Ingrese un valor mayor a 12");
                     String password_generate = generate_password(length_int);
                     password.setText(password_generate);
-                }
-                else {
+                } else {
                     //Genera la contraseña | Generate the password
                     String password_generate = generate_password(length_int);
                     password.setText(password_generate);
@@ -135,12 +132,12 @@ public class password_generator {
             }
         }
 
-        index+=1;
+        index += 1;
 
         //Guarda la contraseña en un archivo de texto | Save the password to a text file
-        if(activate.isSelected()){
+        if (activate.isSelected()) {
             try {
-                writer.write(index + ".- " +  password_generate + "\n");
+                writer.write(index + ".- " + password_generate + "\n");
                 writer.close();
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Error al escribir en el archivo");
